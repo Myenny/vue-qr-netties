@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import QrPage from './views/QrPage.vue'
 import Login from './views/Login.vue'
+import ListOfUsers from './views/ListOfUsers.vue'
 
 Vue.use(Router)
 
@@ -12,6 +12,11 @@ export default new Router({
             path: '/',
             name: 'login',
             component: Login
+        },
+        {
+            path: '/ListOfUsers',
+            name: 'listofusers',
+            component: ListOfUsers
         },
         {
             path: '/QrPage',

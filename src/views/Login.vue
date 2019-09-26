@@ -128,7 +128,42 @@ export default {
   },
   methods: {
     checkUser() {
-      this.$router.push({ name: "QrPage" });
+      const dt = {
+        username: this.userData.username,
+        password: this.userData.password
+      };
+      axios
+        .post(
+          "http://shellhacks-qr-backend-shellhacks2019.apps.shellhacks.rhmi.io/api/v1/token/",
+          dt
+        )
+        .then(response => {
+          localStorage.setItem("token", response.data.access);
+          this.$store.commit("updateToken", response.data.access);
+          const json_data = JSON.parse(
+            atob(response.data.access.split(".")[1])
+          );
+          this.$store.commit("updateAdminUser", json_data.isAdminUser);
+          this.$store.commit("updateAuthentication", json_data.isAuthenticated);
+          this.$store.commit("updateUserName", json_data.username);
+          this.$store.commit(
+            "updateHasTempPassword",
+            json_data.has_tempPassword
+          );
+          this.$router.push({ name: "QrPage" });
+        })
+        .catch(error => {
+          // eslint-disable-next-line no-console
+          console.log("Error");
+          // eslint-disable-next-line no-console
+          console.log(error.response.data);
+          this.$vs.notify({
+            color: "danger",
+            position: "top-center",
+            time: 4000,
+            title: "Incorrect email or password"
+          });
+        });
     },
     submitCreateAccount() {
       let user = {
