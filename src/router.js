@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
 import ListOfUsers from './views/ListOfUsers.vue'
+import QrScanner from '@/components/QrScanner.vue'
 
 Vue.use(Router)
 
@@ -17,6 +18,11 @@ export default new Router({
             path: '/ListOfUsers',
             name: 'listofusers',
             component: ListOfUsers
+        },
+        {
+            path: '/QrScanner',
+            name: 'QrScanner',
+            component: QrScanner
         },
         {
             path: '/QrPage',

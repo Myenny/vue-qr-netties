@@ -23,11 +23,14 @@ import {
 import {
     far
 } from '@fortawesome/free-regular-svg-icons'
+import VueQrcodeReader from "vue-qrcode-reader";
+
 
 library.add(fab, fas, far)
 
 dom.watch()
 
+Vue.use(VueQrcodeReader)
 Vue.use(Bulma)
 Vue.use(Buefy)
 Vue.use(Vuesax)
