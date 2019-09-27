@@ -4,26 +4,33 @@
       <img src="@/assets/logo.png" />
     </section>
     <section class="container is-centered">
-      <img src="@/assets/testQr.png" />
+      <div>{{QrCode}}</div>
+      <!-- <img src="@/assets/testQr.png" @click="getQrCode()" /> -->
     </section>
   </div>
 </template>
 
 
 <script>
-import axios from "axios";
+import api from "@/api/serviceRoutes.js";
 export default {
   name: "QrPage",
   data() {
-    return {};
+    return {
+      QrCode: []
+    };
+  },
+  mounted() {
+    this.getQrCode();
   },
   methods: {
     getQrCode() {
-      axios
-        .post(
-          "http://shellhacks-qr-backend-shellhacks2019.apps.shellhacks.rhmi.io/api/v1/getqrcode/"
-        )
-        .then(() => {
+      api
+        .qrCode()
+
+        .then(response => {
+          console.log(response);
+          this.QrCode = response.data;
           this.$vs.notify({
             color: "primary",
             position: "top-center",

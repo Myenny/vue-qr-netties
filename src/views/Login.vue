@@ -35,9 +35,9 @@
             <a disabled @click="toggleLogin = !toggleLogin">Create Account</a>
           </div>
 
-          <div class="level-right">
+          <!-- <div class="level-right">
             <a disabled @click="showForgotPwd()">Forgot Password?</a>
-          </div>
+          </div>-->
         </div>
         <ForgotPwd></ForgotPwd>
         <div class="field">
@@ -109,7 +109,8 @@
 
 
 <script>
-import axios from "axios";
+import api from "@/api/serviceRoutes.js";
+
 export default {
   name: "Login",
   data() {
@@ -132,11 +133,8 @@ export default {
         username: this.userData.username,
         password: this.userData.password
       };
-      axios
-        .post(
-          "http://shellhacks-qr-backend-shellhacks2019.apps.shellhacks.rhmi.io/api/v1/token/",
-          dt
-        )
+      api
+        .postForToken(dt)
         .then(response => {
           localStorage.setItem("token", response.data.access);
           this.$store.commit("updateToken", response.data.access);
@@ -171,11 +169,8 @@ export default {
         username: this.userData.username,
         password: this.userData.password
       };
-      axios
-        .post(
-          "http://shellhacks-qr-backend-shellhacks2019.apps.shellhacks.rhmi.io/api/v1/createuser/",
-          user
-        )
+      api
+        .postNewAccount(user)
         .then(() => {
           this.$vs.notify({
             color: "primary",
@@ -183,7 +178,7 @@ export default {
             time: 5000,
             title: "Check your Email"
           });
-          this.$router.push({ name: "qr" });
+          this.$router.push({ name: "/" });
         })
         .catch(error => {
           // eslint-disable-next-line no-console
