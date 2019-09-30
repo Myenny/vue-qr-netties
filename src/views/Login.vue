@@ -39,7 +39,7 @@
             <a disabled @click="showForgotPwd()">Forgot Password?</a>
           </div>-->
         </div>
-        <ForgotPwd></ForgotPwd>
+        <!-- <ForgotPwd></ForgotPwd> -->
         <div class="field">
           <p class="has-text-centered">
             <button

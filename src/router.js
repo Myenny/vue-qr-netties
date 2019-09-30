@@ -10,6 +10,15 @@ export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
     routes: [{
+            path: '*',
+            name: '404',
+            beforeEnter: async function(to, from, next) {
+                next({
+                    path: "/"
+                });
+            }
+        },
+        {
             path: '/',
             name: 'login',
             component: Login
