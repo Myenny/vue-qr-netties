@@ -2,8 +2,8 @@ import axios from 'axios';
 import headerFunction from "@/api/headerFunctions.js";
 
 //Main Url for Swagger
-const url = "http://192.168.23.129:8000/api/v1"
-const url1 = "http://shellhacks-qr-backend-shellhacks2019.apps.shellhacks.rhmi.io/api/v1";
+// const url1 = "http://192.168.23.129:8000/api/v1"
+const url = "http://shellhacks-qr-backend-shellhacks2019.apps.shellhacks.rhmi.io/api/v1";
 
 const getQrCode = "/getqrcode/";
 const postForTokenUrl = "/token/";

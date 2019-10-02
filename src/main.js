@@ -24,7 +24,9 @@ import {
     far
 } from '@fortawesome/free-regular-svg-icons'
 import VueQrcodeReader from "vue-qrcode-reader";
+import VueQRCodeComponent from 'vue-qr-generator'
 
+Vue.component('qr-code', VueQRCodeComponent)
 
 library.add(fab, fas, far)
 
